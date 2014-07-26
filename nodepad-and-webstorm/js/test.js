@@ -4,9 +4,9 @@
     var helloTest = function(){
         console.log('test');
     };
-    window.test = {
+    window.test2 = {
         hello:hello,
-        helloTest:helloTest
+        helloTest222:helloTest
     }
 
 })(window)
