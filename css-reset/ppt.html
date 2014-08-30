@@ -1,0 +1,271 @@
+<!doctype html>
+<html lang="en">
+<head>
+
+    <meta charset="utf-8">
+    <title>notepad++ & webstorm</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <link rel="stylesheet" href="css/reveal.min.css">
+    <link rel="stylesheet" href="css/theme/night.css" id="theme">
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+    <style>
+        .style-table{
+            border-collapse: collapse;
+            width:100%;
+        }
+        .style-table td{
+            border:1px solid #fff;
+        }
+
+    </style>
+</head>
+<body>
+<div class="reveal">
+
+    <div class="slides">
+
+
+        <section>
+            <h2>打造CSS Reset</h2>
+
+            <p>BY北河</p>
+        </section>
+
+        <section>
+            <section>
+                <h2> WHY CSS Reset</h2>
+                <ul class="fragment">
+                    <li>浏览器默认样式的不一致</li>
+                    <li>浏览器默认样式反人类</li>
+                    <li>项目中设计规范的通用样式</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>浏览器默认样式不一致</h2>
+                <table class="style-table">
+                    <thead>
+                    <tr>
+                        <td>浏览器/标签</td>
+                        <td>p</td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>ie6</td>
+                        <td>
+                            display: block;
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>ie7</td>
+                        <td>
+                            display: block;
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>ie8</td>
+                        <td>
+                            display: block;
+                            margin: 1em 0;
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>ie9</td>
+                        <td>
+                            display: block;
+                            margin: 1em 0;
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Firefox 3.6</td>
+                        <td>
+                            display: block;
+                            margin: 1em 0;
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>WebKit 61376</td>
+                        <td>
+                            display: block;
+                            margin: 1.0__qem 0px;
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+
+            </section>
+
+            <section>
+                <h2>浏览器默认样式反人类</h2>
+                <table class="style-table">
+                    <thead>
+                    <tr>
+                        <td>浏览器/标签</td>
+                        <td>BODY</td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>ie6</td>
+                        <td>
+                            display: block;
+                            margin: 15px 10px;
+                            zoom: 1;
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>ie7</td>
+                        <td>
+                            display: block;
+                            margin: 15px 10px;
+                            zoom: 1;
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>ie8</td>
+                        <td>
+                            display: block;
+                            margin: 8px;
+                            zoom: 1;
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>ie9</td>
+                        <td>
+                            display: block;
+                            margin: 8px;
+                            zoom: 1;
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Firefox 3.6</td>
+                        <td>
+                            display: block;
+                            margin: 8px;
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>WebKit 61376</td>
+                        <td>display: block;
+                            margin: 8px;
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <section>
+                <h2>项目中设计规范的通用样式</h2>
+                <ul>
+                    <li>body中的字体设置</li>
+                    <li>a标签字体的设置</li>
+                    <li>ul,ol的列表样式</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>网上的浏览器默认CSS样式表</h2>
+                <ul>
+                    <li>
+                        <a target="_blank" href="http://www.w3cfuns.com/topic-12.html">w3cfuns(有常用浏览器的默认样式下载)</a>
+                    </li>
+                    <li>
+                        <a target="_blank" href="http://developer.doyoe.com/default-style/">doyoe整理的</a>
+                    </li>
+                </ul>
+            </section>
+        </section>
+
+        <section>
+            <section>
+                <h2>CSS reset 起始</h2>
+
+                <p>
+                    据玉伯的叙述，第一个CSS reset是Tantek写的<a target="_blank" href="http://tantek.com/log/2004/undohtml.css">undohtml.css</a>。
+                </p>
+            </section>
+            <section>
+                <h2>粗暴的CSS reset</h2>
+                <div>
+                    *{ margin:0; padding:0; }
+                </div>
+                <p>
+                    错杀一千，不放过一个。偷懒时候常用。
+                </p>
+            </section>
+
+            <section>
+                <h2>滥用的CSS reset</h2>
+                <div>
+                    blockquote,body,button,dd,dl,dt,fieldset,form,h1,h2,h3,h4,h5,h6,hr,input,legend,li,ol,p,pre,td,textarea,th,ul{margin:0;padding:0}
+                </div>
+                <ul>
+                    <li>body只要margin:0;就over了 </li>
+                    <li>p标签只需要margin:0;或margin:1em 0;</li>
+                    <li></li>
+                </ul>
+            </section>
+
+        </section>
+
+        <section>
+            <section>
+                <h2> notepad++ 插件推荐</h2>
+
+                <p>
+                    新版的已经集成了插件管理器，插件可以直接从插件管理器安装了。
+                </p>
+            </section>
+        </section>
+
+        <section>
+            <section>
+                <h2>WebStorm 其余资料</h2>
+                <div>
+                    <ul>
+                        <li><a href="http://www.book.36ria.com/webstorm/index.html#index" target="_blank">webstorm入门指南</a></li>
+                        <li><a href="https://github.com/Damao/Intellij-IDEA-F2E">IntelliJ-IDEA-F2E</a></li>
+                    </ul>
+                    <div style="margin-top:20px;">
+                        IDEA前端群：149725975<br />(入群暗号：保证仅讨论前端编辑器)
+                    </div>
+
+                </div>
+            </section>
+        </section>
+
+        <section>
+            <section>
+                <h2>谢谢观赏</h2>
+                <h3>2014-07-27</h3>
+            </section>
+        </section>
+
+    </div>
+
+</div>
+
+<script src="lib/js/head.min.js"></script>
+<script src="js/reveal.min.js"></script>
+<script>
+
+    Reveal.initialize({
+        history: true,
+        transition: 'linear',
+        progress: true,
+        math: {
+            // mathjax: 'http://cdn.mathjax.org/mathjax/latest/MathJax.js',
+            config: 'TeX-AMS_HTML-full'
+        },
+
+        dependencies: [
+            { src: 'lib/js/classList.js' }
+        ]
+    });
+
+</script>
+</body>
+</html>
