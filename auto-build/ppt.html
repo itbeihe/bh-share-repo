@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="en">
+<head>
+
+    <meta charset="utf-8">
+    <title>走在路上De前端自动化</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <link rel="stylesheet" href="css/reveal.min.css">
+    <link rel="stylesheet" href="css/theme/night.css" id="theme">
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+    <style>
+        .style-table{
+            border-collapse: collapse;
+            width:100%;
+        }
+        .style-table td{
+            border:1px solid #fff;
+        }
+
+        .red{
+            color:red;
+        }
+        .ft16{
+            font-size:16px;
+        }
+    </style>
+</head>
+<>
+<div class="reveal">
+
+    <div class="slides">
+        <section data-background="images/road.jpg" >
+            <h2 style="padding-bottom:30%;color:#336699;">在路上De前端自动化</h2>
+            <p style="padding-top:5%;text-align: right;">BY唐琪</p>
+        </section>
+        <section>
+            <ul>
+                <li>为什么要做前端自动化</li>
+                <li>前端自动化方案</li>
+                <li>当今的前端自动化能完成哪些事情</li>
+                <li>我们在路上的前端自动化</li>
+            </ul>
+        </section>
+        <section>
+            <h2>最简单的前端工作流</h2>
+            <ul>
+                <li>1.切图</li>
+                <li>2.编写代码,html,css,js</li>
+                <li>3.刷新浏览器看效果</li>
+                <li>4.重复2-3,直到效果完成</li>
+                <li>5.测试</li>
+                <li>6.重复2-5,直到无bug.</li>
+                <li>7.部署</li>
+            </ul>
+        </section>
+        <section>
+            <h2>有了性能要求的前端工作流</h2>
+            <ul>
+                <li>1.切图，<span  class="red">做雪碧图</span></li>
+                <li>2.编写代码,规划文件</li>
+                <li class="red">3.手动合并压缩静态文件</li>
+                <li>4.刷新浏览器看效果</li>
+                <li>5.重复1-4,直到效果完成.</li>
+                <li class="red">6.增加静态文件时间戳</li>
+                <li>7.测试</li>
+                <li>8.重复2-7,直到无bug.</li>
+                <li>9.部署</li>
+            </ul>
+        </section>
+        <section>
+            <h2>移动时代有性能要求的前端工作流</h2>
+            <ul>
+                <li>1.切图,做雪碧图，<span  class="red">做retina适配的图片(双份图片)</span></li>
+                <li>2.编写代码，<span  class="red">模板(html/smarty模板)，css不同屏适配(可能用less/sass)，脚本(js/typescript/coffeescript/)</span></li>
+                <li class="red">3.构建debug版本代码{模板编译，css转换，脚本编译，目录迁移}</li>
+                <li>4.刷新浏览器看效果</li>
+                <li>5.重复2-4,直到效果完成.</li>
+                <li class="red">6.构建production代码,增加时间戳。</li>
+                <li class="red">7.前端单元测试</li>
+                <li>8.测试</li>
+                <li>9.重复2-8,直到无bug.</li>
+                <li>10.部署</li>
+            </ul>
+            <p style="padding-top:20px;text-align: left;">所见即所得开发 ----> 编译开发</p>
+        </section>
+
+        <section>
+            <h2>这些事情真的需要人肉完成么？</h2>
+            <ul>
+                <li>代码格式检查</li>
+                <li>编译模板</li>
+                <li>转码（less/coffeescript/react）</li>
+                <li>合并</li>
+                <li>压缩</li>
+                <li>目录迁移</li>
+                <li>测试</li>
+                <li>部署文件提取</li>
+            </ul>
+        </section>
+        <section>
+            <h1>一条命令搞定上述任务怎样？</h1>
+        </section>
+        <section>
+            <h2>前端自动化方案</h2>
+            <ul>
+                <li>他山之石:Ant</li>
+                <li>锤子:npm script</li>
+                <li>专属武器:grunt，gulp，fis...</li>
+                <li>上古神器:Make</li>
+            </ul>
+        </section>
+        <section>
+            <section>
+                <h2>他山之石:Ant</h2>
+                <ul>
+                    <li>接触到最早的前端构建解决方案</li>
+                    <li>基于JAVA的构建系统</li>
+                    <li>XML格式的配置文件</li>
+                    <li>跨平台</li>
+                </ul>
+            </section>
+            <section>
+                <h2>npm script</h2>
+                <ul>
+                    <li>npm package中的执行脚本功能，本质是调用shell脚本</li>
+                    <li>简陋，无配置文件</li>
+                    <li>有限跨平台</li>
+                </ul>
+            </section>
+            <section>
+                <h2>专属武器:grunt，gulp，fis...</h2>
+                <ul>
+                    <li>有了node这把锤子，前端可以多做不少事情，又没有官方足够强大的工具，于是各种轮子出来了。</li>
+                    <li>基于nodejs去构建</li>
+                    <li>基本是json格式的配置文件</li>
+                    <li>跨平台</li>
+                </ul>
+            </section>
+            <section>
+                <h2>上古神器:Make</h2>
+                <ul>
+                    <li>C/C++项目的构建工具，可靠耐用，经得起历史考验。</li>
+                    <li>Makefile配置文件</li>
+                    <li>有限跨平台</li>
+                </ul>
+            </section>
+        </section>
+        <section>
+
+        </section>
+        <section>
+            <section>
+                <h2>谢谢观赏</h2>
+                <h3>2014-07-27</h3>
+            </section>
+        </section>
+
+    </div>
+
+</div>
+
+<script src="lib/js/head.min.js"></script>
+<script src="js/reveal.min.js"></script>
+<script>
+
+    Reveal.initialize({
+        history: true,
+        transition: 'linear',
+        progress: true,
+        math: {
+            // mathjax: 'http://cdn.mathjax.org/mathjax/latest/MathJax.js',
+            config: 'TeX-AMS_HTML-full'
+        },
+
+        dependencies: [
+            { src: 'lib/js/classList.js' }
+        ]
+    });
+
+</script>
+</body>
+</html>
