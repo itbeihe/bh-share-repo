@@ -9,7 +9,7 @@
 
     <link rel="stylesheet" href="css/reveal.min.css">
     <link rel="stylesheet" href="css/theme/night.css" id="theme">
-    <link rel="stylesheet" href="lib/css/zenburn.css">
+    <link rel="stylesheet" href="css/zenburn.css">
     <style>
         .style-table{
             border-collapse: collapse;
@@ -98,7 +98,10 @@
             </ul>
         </section>
         <section>
-            <h1>一条命令搞定上述任务怎样？</h1>
+            <h2>一条命令搞定上述任务怎样？</h2>
+        </section>
+        <section>
+            <h2>让机器去作事，我们做个监工</h2>
         </section>
         <section>
             <h2>现在的自动化可以做哪些事情?</h2>
@@ -112,9 +115,6 @@
                 <li>测试</li>
                 <li>部署文件提取</li>
             </ul>
-        </section>
-        <section>
-            <h1>让机器去作事，我们做个监工</h1>
         </section>
         <section>
             <h2>前端自动化方案</h2>
@@ -165,41 +165,153 @@
             <h2>举个栗子</h2>
         </section>
         <section>
-            <h2>gulp 自动化构架 demo</h2>
+            <h2>gulp 自动化构架示例</h2>
             <ul>
-                <li>生成1x和2x图片，优化图片大小</li>
+                <li>生成1x和2x图片</li>
+                <li>合并sprite图片</li>
                 <li>less转css</li>
-                <li>合并css</li>
-                <li>合并js</li>
-                <li>压缩js</li>
-                <li>压缩css</li>
-            </ul>
-        </section>
-        <section>
-            <h2>gulp 自动化构架 demo</h2>
-            <ul>
-                <li>生成1x和2x图片，优化图片大小</li>
-                <li>less转css</li>
-                <li>合并css</li>
-                <li>合并js</li>
-                <li>压缩js到发布目录</li>
-                <li>压缩css到发布目录</li>
+                <li>合并压缩css</li>
+                <li>合并压缩js</li>
                 <li>提取tar包</li>
             </ul>
         </section>
+        <section>
+            <h2>所需环境</h2>
+            <ul>
+                <li>Nodejs：前端的一把大锤子</li>
+                <li>NPM与package.json：包管理工具</li>
+                <li>Gulp-cli：gulp命令行工具</li>
+            </ul>
+        </section>
+        <section>
+            <h2>生成1x和2x图片</h2>
+            <pre><code>
+                var rename = require("gulp-rename");
+                var imageResize = require('gulp-image-resize');
 
+                gulp.task('retina',function(){
+                    return gulp.src('static/source/img/*-2x.{png,jpg}')
+                    .pipe(imageResize({
+                        width : '50%',
+                        height : '50%'
+                    })).pipe(rename(function(path){
+                        path.basename = path.basename.replace('-2x','');
+                    }))
+                    .pipe(gulp.dest('static/source/img/'));
+                });
+            </code></pre>
+        </section>
+        <section>
+            <h2>生成css sprite和样式</h2>
+            <pre><code>
+                var spritesmith = require('gulp.spritesmith');
+                gulp.task('sprite', function () {
+                    // 配置图片优化相关选项
+                    var spriteData = gulp.src('static/source/img/*.png').pipe(spritesmith({
+                        retinaSrcFilter: ['static/source/img/*-2x.png'],
+                        algorithm: 'top-down',
+                        imgName: 'sprite.png',
+                        retinaImgName: 'sprite-2x.png',
+                        cssName: 'sprite.css'
+                    }));
+                    // 压缩图片，并输出图片流
+                    var imgStream = spriteData.img
+                        .pipe(imagemin())
+                        .pipe(gulp.dest('static/dist/img/'));
+                    // 输出css
+                    var cssStream = spriteData.css
+                        .pipe(gulp.dest('static/source/css/common/'));
+
+                    return merge(imgStream, cssStream);
+                });
+            </code></pre>
+        </section>
+
+
+
+        <section>
+            <h2>编译less为css</h2>
+            <pre><code>
+                var less = require('gulp-less');
+                // 编译less文件为css文件
+                gulp.task('less',function(){
+                    return gulp.src('static/source/less/**/*.less')
+                    .pipe(less())
+                    .pipe(gulp.dest('static/source/css/'));
+                });
+            </code></pre>
+        </section>
+
+        <section >
+            <h2>合并压缩css文件</h2>
+            <pre><code>
+                var concat = require('gulp-concat');
+                var cssmin = require('gulp-cssmin');
+                var rename = require("gulp-rename");
+
+                gulp.task('css',['sprite','less'],function(){
+                    var commonCss = gulp.src(['static/source/css/**/*.css','static/source/css/**/*.css'])
+                        .pipe(concat('main.css'))
+                        .pipe(gulp.dest('static/dist/css/common/'))
+                        .pipe(cssmin())
+                        .pipe(rename('main.min.css'))
+                        .pipe(gulp.dest('static/dist/css/common/'));
+
+                    var pageCss = gulp.src('static/source/css/page/*.css')
+                        .pipe(gulp.dest('static/dist/css/page/'))
+                        .pipe(cssmin())
+                        .pipe(rename({suffix:'-min'}))
+                        .pipe(gulp.dest('static/dist/css/page/'));
+
+                    return merge(commonCss, pageCss);
+                });
+            </code></pre>
+        </section>
+
+        <section >
+            <h2>合并压缩js文件</h2>
+            <pre><code>
+                var concat = require('gulp-concat');
+                var uglify = require('gulp-uglify');
+                var rename = require("gulp-rename");
+
+                gulp.task('css',['sprite','less'],function(){
+                    var commonCss = gulp.src(['static/source/css/**/*.css','static/source/css/**/*.css'])
+                        .pipe(concat('main.css'))
+                        .pipe(gulp.dest('static/dist/css/common/'))
+                        .pipe(cssmin())
+                        .pipe(rename('main.min.css'))
+                        .pipe(gulp.dest('static/dist/css/common/'));
+
+                    var pageCss = gulp.src('static/source/css/page/*.css')
+                        .pipe(gulp.dest('static/dist/css/page/'))
+                        .pipe(cssmin())
+                        .pipe(rename({suffix:'-min'}))
+                        .pipe(gulp.dest('static/dist/css/page/'));
+
+                    return merge(commonCss, pageCss);
+                });
+            </code></pre>
+        </section>
+
+        <section >
+            <h2>把任务串起来</h2>
+            <pre><code>
+                gulp.task('build',['css','js']);
+            </code></pre>
+        </section>
+
+        <section >
+            <h2>干嘛不多走走</h2>
+            <pre><code>
+                gulp.task('build',['css','js']);
+            </code></pre>
+        </section>
 
         <section data-background="images/road.jpg" >
             <h2>我们的自动化之路</h2>
             <p>建设之中</p>
         </section>
-        <section>
-
-        </section>
-        <section >
-
-        </section>
-
         <section>
             <section>
                 <h2>谢谢观赏</h2>
@@ -225,7 +337,8 @@
         },
 
         dependencies: [
-            { src: 'lib/js/classList.js' }
+            { src: 'js/highlight.js', async: true, condition: function() { return !!document.querySelector( 'pre code' ); }, callback: function() { hljs.initHighlightingOnLoad(); } }
+
         ]
     });
 
