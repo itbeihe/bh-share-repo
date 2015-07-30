@@ -172,6 +172,7 @@
                 <li>less转css</li>
                 <li>合并压缩css</li>
                 <li>合并压缩js</li>
+                <li>代码格式检查</li>
                 <li>提取tar包</li>
             </ul>
         </section>
@@ -386,9 +387,23 @@ gulp.task('js',function(){
             </code></pre>
         </section>
         <section >
+            <h2>代码检查</h2>
+            <pre><code>
+
+var jshint = require("gulp-jshint");
+
+// 代码检查
+gulp.task('lint', function() {
+    return gulp.src('static/source/js/**/*.js')
+        .pipe(jshint())
+        .pipe(jshint.reporter('default'));
+});
+            </code></pre>
+        </section>
+        <section >
             <h2>把任务串起来</h2>
             <pre><code>
-                gulp.task('build',['css','js']);
+                gulp.task('build',['css','js','lint']);
             </code></pre>
         </section>
         <section >
@@ -459,13 +474,13 @@ gulp.task('zip', function () {
         <section>
             <h2>接下来考虑做的事情</h2>
             <ul>
-                <li>静态文件合并</li>
-                <li>静态资源的hash命名</li>
-                <li></li>
-                <li></li>
-                <li></li>
+                <li>静态文件按需合并</li>
+                <li>代码格式检查</li>
+                <li style="color:#aaaaaa;">css sprites</li>
+                <li style="color:#333333;">静态资源的hash命名</li>
             </ul>
         </section>
+
         <section data-background="images/sun.jpg">
             <h2>我们希望的自动化</h2>
             <ul>
