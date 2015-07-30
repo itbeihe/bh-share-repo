@@ -4,9 +4,7 @@
 
     <meta charset="utf-8">
     <title>走在路上De前端自动化</title>
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-
     <link rel="stylesheet" href="css/reveal.min.css">
     <link rel="stylesheet" href="css/theme/night.css" id="theme">
     <link rel="stylesheet" href="css/zenburn.css">
@@ -32,16 +30,19 @@
 
     <div class="slides">
         <section data-background="images/road.jpg" >
-            <h2 style="padding-bottom:30%;color:#336699;">在路上De前端自动化</h2>
+            <h2 style="padding-bottom:20%;color:#336699;">在路上De前端自动化</h2>
             <p style="padding-top:5%;text-align: right;">BY唐琪</p>
         </section>
         <section>
             <ul>
                 <li>为什么要做前端自动化</li>
                 <li>前端自动化方案</li>
-                <li>当今的前端自动化能完成哪些事情</li>
-                <li>我们在路上的前端自动化</li>
+                <li>一个简单的Gulp构建方案</li>
+                <li>我们的前端自动化</li>
             </ul>
+        </section>
+        <section>
+            <h2>为什么要做前端自动化?</h2>
         </section>
         <section>
             <h2>最简单的前端工作流</h2>
@@ -59,7 +60,7 @@
             <h2>有了性能要求的前端工作流</h2>
             <ul>
                 <li>1.切图，<span  class="red">做雪碧图</span></li>
-                <li>2.编写代码,规划文件</li>
+                <li>2.规划，编写代码</li>
                 <li class="red">3.手动合并压缩静态文件</li>
                 <li>4.刷新浏览器看效果</li>
                 <li>5.重复1-4,直到效果完成.</li>
@@ -70,7 +71,7 @@
             </ul>
         </section>
         <section>
-            <h2>移动时代有性能要求的前端工作流</h2>
+            <h2>移动时代有质量要求的前端工作流</h2>
             <ul>
                 <li>1.切图,做雪碧图，<span  class="red">做retina适配的图片(双份图片)</span></li>
                 <li>2.编写代码，<span  class="red">模板(html/smarty模板)，css不同屏适配(可能用less/sass)，脚本(js/typescript/coffeescript/)</span></li>
@@ -97,11 +98,9 @@
                 <li>刷新浏览器</li>
             </ul>
         </section>
-        <section>
-            <h2>一条命令搞定上述任务怎样？</h2>
-        </section>
-        <section>
-            <h2>让机器去作事，我们做个监工</h2>
+        <section data-background="images/zhuan.jpg">
+            <h2 style="padding-bottom:5%" >一条命令搞定上述任务怎样？</h2>
+            <h2 class="fragment">让机器去做事，我们做个监工</h2>
         </section>
         <section>
             <h2>现在的自动化可以做哪些事情?</h2>
@@ -119,15 +118,15 @@
         <section>
             <h2>前端自动化方案</h2>
             <ul>
-                <li>他山之石:Ant</li>
-                <li>锤子:npm script</li>
-                <li>专属武器:grunt，gulp，fis...</li>
-                <li>上古神器:Make</li>
+                <li>他山之石：Ant</li>
+                <li>锤子：npm script</li>
+                <li>专属武器：grunt，gulp，fis...</li>
+                <li>上古神器：Make</li>
             </ul>
         </section>
         <section>
             <section>
-                <h2>他山之石:Ant</h2>
+                <h2>他山之石：Ant</h2>
                 <ul>
                     <li>接触到最早的前端构建解决方案</li>
                     <li>基于JAVA的构建系统</li>
@@ -138,7 +137,7 @@
             <section>
                 <h2>npm script</h2>
                 <ul>
-                    <li>npm package中的执行脚本功能，本质是调用shell脚本</li>
+                    <li>npm的执行脚本功能，本质是调用shell脚本</li>
                     <li>简陋，无配置文件</li>
                     <li>有限跨平台</li>
                 </ul>
@@ -146,9 +145,9 @@
             <section>
                 <h2>专属武器:grunt，gulp，fis...</h2>
                 <ul>
-                    <li>有了node这把锤子，前端可以多做不少事情，又没有官方足够强大的工具，于是各种轮子出来了。</li>
-                    <li>基于nodejs去构建</li>
-                    <li>基本是json格式的配置文件</li>
+                    <li>有了node这把锤子，前端可以多做不少事情，在没有足够权威足够强大框架的背景下，各种轮子出来了。</li>
+                    <li>基于nodejs去开发</li>
+                    <li>基本是json格式或js的配置文件</li>
                     <li>跨平台</li>
                 </ul>
             </section>
@@ -161,11 +160,12 @@
                 </ul>
             </section>
         </section>
-        <section>
-            <h2>举个栗子</h2>
+        <section data-background="images/lizi.jpg">
+            <h2 style="color:#000000;">要如何使用呢？</h2>
         </section>
         <section>
-            <h2>gulp 自动化构架示例</h2>
+            <h2>gulp自动化构建示例</h2>
+            <p><a href="https://github.com/itbeihe/gulp_auto_build_demo">例子地址</a></p>
             <ul>
                 <li>生成1x和2x图片</li>
                 <li>合并sprite图片</li>
@@ -176,149 +176,308 @@
             </ul>
         </section>
         <section>
-            <h2>所需环境</h2>
-            <ul>
-                <li>Nodejs：前端的一把大锤子</li>
-                <li>NPM与package.json：包管理工具</li>
-                <li>Gulp-cli：gulp命令行工具</li>
-            </ul>
+            <section>
+                <h2>所需环境</h2>
+                <ul>
+                    <li>Nodejs：我们的大锤子</li>
+                    <li>NPM与package.json：包管理工具</li>
+                    <li>Gulp-cli：gulp命令行工具</li>
+                </ul>
+            </section>
+            <section>
+                <h2>Node.js</h2>
+                <p>
+                    <a href="https://nodejs.org/download/">Node.js下载</a>
+                </p>
+            </section>
+            <section>
+                <h2>NPM</h2>
+                <ul>
+                    <li>
+                        <a href="https://www.npmjs.com/">NPM官方地址</a>
+                    </li>
+                    <li>
+                        <a href="https://docs.npmjs.com/getting-started/">NPM官方文档</a>
+                    </li>
+                </ul>
+                <pre><code>
+npm install package-name  // 安装包到当前目录
+npm install package-name -g //  安装包到
+npm install package-name --save // 安装包并把写入package.json的dependencies
+npm install package-name --save-dev // 安装包并把写入package.json的devDependencies
+npm install // 根据package.json中的dependencies参数，安装所需要的包
+npm install --dev // 根据package.json中的devDependencies参数，安装所需要的包
+                </code></pre>
+            </section>
+            <section>
+                <h2>package.json</h2>
+                <p>
+                    <a href="https://docs.npmjs.com/files/package.json">package.json官方文档</a>
+                </p>
+                <pre><code>
+{
+    "name": "gulp_auto_build_demo",
+    "version": "1.0.0",
+    "description": "one gulp auto build demo",
+    "main": "index.js",
+    "scripts": {},
+    "repository": {
+    "type": "git",
+        "url": "git+https://github.com/itbeihe/gulp_auto_build_demo.git"
+    },
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/itbeihe/gulp_auto_build_demo/issues"
+    },
+    "homepage": "https://github.com/itbeihe/gulp_auto_build_demo#readme",
+    "dependencies":{
+    },
+    "devDependencies": {
+        "gulp-concat": "^2.6.0",
+        "gulp-css-rework-url": "git://github.com/itbeihe/gulp-css-rework-url.git#demo",
+        "gulp-cssmin": "^0.1.7",
+        "gulp-csso": "^1.0.0",
+        "gulp-image-resize": "^0.6.0",
+        "gulp-imagemin": "^2.3.0",
+        "gulp-less": "^3.0.3",
+        "gulp-rename": "^1.2.2",
+        "gulp-run": "^1.6.10",
+        "gulp-uglify": "^1.2.0",
+        "gulp.spritesmith": "^3.8.2",
+        "merge-stream": "^0.1.8"
+    }
+}
+
+                </code></pre>
+            </section>
+
+            <section>
+                <h2>Gulp与Gulp-cli</h2>
+                <ul>
+                    <li>
+                        <a href="https://github.com/lisposter/gulp-docs-zh-cn">gulp文档</a>
+                    </li>
+                    <li>
+                        <a href="https://github.com/gulpjs/gulp/blob/master/docs/CLI.md">gulp命令行文档</a>
+                    </li>
+                </ul>
+
+                </p>
+                <pre><code>
+//全局安装命令行工具 linux需要sudo执行，windows请用管理员启动命令行。
+npm install gulp-cli -g
+
+//项目中安装gulp
+npm install gulp --save-dev
+                </code></pre>
+            </section>
         </section>
         <section>
             <h2>生成1x和2x图片</h2>
             <pre><code>
-                var rename = require("gulp-rename");
-                var imageResize = require('gulp-image-resize');
+var rename = require("gulp-rename");
+var imageResize = require('gulp-image-resize');
 
-                gulp.task('retina',function(){
-                    return gulp.src('static/source/img/*-2x.{png,jpg}')
-                    .pipe(imageResize({
-                        width : '50%',
-                        height : '50%'
-                    })).pipe(rename(function(path){
-                        path.basename = path.basename.replace('-2x','');
-                    }))
-                    .pipe(gulp.dest('static/source/img/'));
-                });
+gulp.task('retina',function(){
+    return gulp.src('static/source/img/*-2x.{png,jpg}')
+    .pipe(imageResize({
+        width : '50%',
+        height : '50%'
+    })).pipe(rename(function(path){
+        path.basename = path.basename.replace('-2x','');
+    }))
+    .pipe(gulp.dest('static/source/img/'));
+});
             </code></pre>
         </section>
         <section>
             <h2>生成css sprite和样式</h2>
             <pre><code>
-                var spritesmith = require('gulp.spritesmith');
-                gulp.task('sprite', function () {
-                    // 配置图片优化相关选项
-                    var spriteData = gulp.src('static/source/img/*.png').pipe(spritesmith({
-                        retinaSrcFilter: ['static/source/img/*-2x.png'],
-                        algorithm: 'top-down',
-                        imgName: 'sprite.png',
-                        retinaImgName: 'sprite-2x.png',
-                        cssName: 'sprite.css'
-                    }));
-                    // 压缩图片，并输出图片流
-                    var imgStream = spriteData.img
-                        .pipe(imagemin())
-                        .pipe(gulp.dest('static/dist/img/'));
-                    // 输出css
-                    var cssStream = spriteData.css
-                        .pipe(gulp.dest('static/source/css/common/'));
+var spritesmith = require('gulp.spritesmith');
+var cru = require('gulp-css-rework-url');
 
-                    return merge(imgStream, cssStream);
-                });
+gulp.task('sprite',['retina'],function () {
+    // 配置图片优化相关选项
+    var spriteData = gulp.src('static/source/img/*.png').pipe(spritesmith({
+        retinaSrcFilter: ['static/source/img/*-2x.png'],
+        algorithm: 'top-down',
+        imgName: 'sprite.png',
+        retinaImgName: 'sprite-2x.png',
+        cssName: 'sprite.css'
+    }));
+    // 压缩图片，并输出图片流
+    var imgStream = spriteData.img
+        .pipe(imagemin())
+        .pipe(gulp.dest('static/dist/img/'));
+    // 输出css
+    var cssStream = spriteData.css
+        .pipe(cru({
+        prefix:'../../img/'
+        }))
+        .pipe(gulp.dest('static/source/css/common/'));
+
+    return merge(imgStream, cssStream);
+});
             </code></pre>
         </section>
-
-
-
         <section>
             <h2>编译less为css</h2>
             <pre><code>
-                var less = require('gulp-less');
-                // 编译less文件为css文件
-                gulp.task('less',function(){
-                    return gulp.src('static/source/less/**/*.less')
-                    .pipe(less())
-                    .pipe(gulp.dest('static/source/css/'));
-                });
+var less = require('gulp-less');
+
+// 编译less文件为css文件
+gulp.task('less',function(){
+    return gulp.src('static/source/less/**/*.less')
+    .pipe(less())
+    .pipe(gulp.dest('static/source/css/'));
+});
             </code></pre>
         </section>
-
         <section >
             <h2>合并压缩css文件</h2>
             <pre><code>
-                var concat = require('gulp-concat');
-                var cssmin = require('gulp-cssmin');
-                var rename = require("gulp-rename");
+var concat = require('gulp-concat');
+var cssmin = require('gulp-cssmin');
+var rename = require("gulp-rename");
 
-                gulp.task('css',['sprite','less'],function(){
-                    var commonCss = gulp.src(['static/source/css/**/*.css','static/source/css/**/*.css'])
-                        .pipe(concat('main.css'))
-                        .pipe(gulp.dest('static/dist/css/common/'))
-                        .pipe(cssmin())
-                        .pipe(rename('main.min.css'))
-                        .pipe(gulp.dest('static/dist/css/common/'));
+gulp.task('css',['sprite','less'],function(){
+    var commonCss = gulp.src(['static/source/css/**/*.css','static/source/css/**/*.css'])
+        .pipe(concat('main.css'))
+        .pipe(gulp.dest('static/dist/css/common/'))
+        .pipe(cssmin())
+        .pipe(rename('main.min.css'))
+        .pipe(gulp.dest('static/dist/css/common/'));
 
-                    var pageCss = gulp.src('static/source/css/page/*.css')
-                        .pipe(gulp.dest('static/dist/css/page/'))
-                        .pipe(cssmin())
-                        .pipe(rename({suffix:'-min'}))
-                        .pipe(gulp.dest('static/dist/css/page/'));
+    var pageCss = gulp.src('static/source/css/page/*.css')
+        .pipe(gulp.dest('static/dist/css/page/'))
+        .pipe(cssmin())
+        .pipe(rename({suffix:'-min'}))
+        .pipe(gulp.dest('static/dist/css/page/'));
 
-                    return merge(commonCss, pageCss);
-                });
+    return merge(commonCss, pageCss);
+});
             </code></pre>
         </section>
-
         <section >
             <h2>合并压缩js文件</h2>
             <pre><code>
-                var concat = require('gulp-concat');
-                var uglify = require('gulp-uglify');
-                var rename = require("gulp-rename");
+var concat = require('gulp-concat');
+var uglify = require('gulp-uglify');
+var rename = require("gulp-rename");
 
-                gulp.task('css',['sprite','less'],function(){
-                    var commonCss = gulp.src(['static/source/css/**/*.css','static/source/css/**/*.css'])
-                        .pipe(concat('main.css'))
-                        .pipe(gulp.dest('static/dist/css/common/'))
-                        .pipe(cssmin())
-                        .pipe(rename('main.min.css'))
-                        .pipe(gulp.dest('static/dist/css/common/'));
+// 构建js文件
+gulp.task('js',function(){
+    var commonJsStream = gulp.src('static/source/js/**/*.js')
+        .pipe(concat('app.js'))
+        .pipe(gulp.dest('static/dist/js/'))
+        .pipe(uglify())
+        .pipe(rename('app.min.js'))
+        .pipe(gulp.dest('static/dist/js/'));
 
-                    var pageCss = gulp.src('static/source/css/page/*.css')
-                        .pipe(gulp.dest('static/dist/css/page/'))
-                        .pipe(cssmin())
-                        .pipe(rename({suffix:'-min'}))
-                        .pipe(gulp.dest('static/dist/css/page/'));
+    var pageJsStream = gulp.src('static/source/js/page/*.js')
+        .pipe(gulp.dest('static/dist/js/page/'))
+        .pipe(uglify())
+        .pipe(rename({suffix:'-min'}))
+        .pipe(gulp.dest('static/dist/js/page/'));
 
-                    return merge(commonCss, pageCss);
-                });
+    return merge(commonJsStream, pageJsStream);
+});
             </code></pre>
         </section>
-
         <section >
             <h2>把任务串起来</h2>
             <pre><code>
                 gulp.task('build',['css','js']);
             </code></pre>
         </section>
-
         <section >
-            <h2>干嘛不多走走</h2>
+            <h2>在多走一步呢？</h2>
             <pre><code>
-                gulp.task('build',['css','js']);
+var run = require('gulp-run');
+gulp.task('zip', function () {
+    // git 提取当前版本与上一个版本的差异
+    run('git diff HEAD HEAD~ --name-only| xargs zip update.zip ').exec();
+});
+// 用了bash命令，仅linux下可用。window通过扩展命令行应该也可实现.
             </code></pre>
         </section>
 
-        <section data-background="images/road.jpg" >
-            <h2>我们的自动化之路</h2>
-            <p>建设之中</p>
+        <section data-background="images/repair.jpg" >
+            <h2 style="padding-bottom:5%;">我们的前端自动化</h2>
+            <h2 class="fragment">刚刚开始</h2>
         </section>
         <section>
-            <section>
-                <h2>谢谢观赏</h2>
-                <h3>2014-07-27</h3>
-            </section>
+            <h2>刚刚完成的功能</h2>
+            <ul>
+                <li>js文件压缩</li>
+                <li>css文件压缩</li>
+            </ul>
         </section>
-
+        <section>
+            <h2>目录结构的变化</h2>
+            <table style="width:100%;">
+                <tbody>
+                <tr>
+                    <td  style="text-align: center">
+                        <img src="images/file-before.png" style="text-align: center" alt=""/>
+                    </td>
+                    <td  style="text-align: center">
+                        <img src="images/file.png" alt="" />
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </section>
+        <section>
+            <h2>app项目之前的工作流程</h2>
+            <ul>
+                <li>1.切图</li>
+                <li>2.编写代码,html,css,js</li>
+                <li>3.刷新浏览器看效果</li>
+                <li>4.重复2-3,直到效果完成</li>
+                <li>5.测试</li>
+                <li>6.重复2-5,直到无bug.</li>
+                <li>7.部署</li>
+            </ul>
+        </section>
+        <section>
+            <h2>app项目现在的工作流程</h2>
+            <ul>
+                <li class="red">1.config.php配置把前端目录改为debug目录</li>
+                <li>2.切图</li>
+                <li>3.编写代码,html,css,js</li>
+                <li>4.刷新浏览器看效果</li>
+                <li>5.重复2-3,直到效果完成</li>
+                <li class="red">6.config.php配置把前端目录改为product目录</li>
+                <li class="red">7.gulp构建product代码</li>
+                <li>8.测试</li>
+                <li>9.重复2-5,直到无bug.</li>
+                <li>10.部署</li>
+            </ul>
+        </section>
+        <section>
+            <h2>接下来考虑做的事情</h2>
+            <ul>
+                <li>静态文件合并</li>
+                <li>静态资源的hash命名</li>
+                <li></li>
+                <li></li>
+                <li></li>
+            </ul>
+        </section>
+        <section data-background="images/sun.jpg">
+            <h2>我们希望的自动化</h2>
+            <ul>
+                <li>简单--(开发者)</li>
+                <li>强大--(对项目)</li>
+                <li>友好--(对后端，对部署)</li>
+            </ul>
+        </section>
+        <section >
+            <h2>谢谢观赏</h2>
+            <h3>2015-07-30</h3>
+        </section>
     </div>
 
 </div>
