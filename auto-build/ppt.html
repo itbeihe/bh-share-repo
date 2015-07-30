@@ -31,12 +31,12 @@
     <div class="slides">
         <section data-background="images/road.jpg" >
             <h2 style="padding-bottom:20%;color:#336699;">在路上De前端自动化</h2>
-            <p style="padding-top:5%;text-align: right;">BY唐琪</p>
+            <p style="padding-top:5%;text-align: right;">BY 唐琪</p>
         </section>
         <section>
             <ul>
                 <li>为什么要做前端自动化</li>
-                <li>前端自动化方案</li>
+                <li>前端自动化方案有哪些</li>
                 <li>一个简单的Gulp构建方案</li>
                 <li>我们的前端自动化</li>
             </ul>
@@ -78,13 +78,12 @@
                 <li class="red">3.构建debug版本代码{模板编译，css转换，脚本编译，目录迁移}</li>
                 <li>4.刷新浏览器看效果</li>
                 <li>5.重复2-4,直到效果完成.</li>
-                <li class="red">6.构建production代码,增加时间戳。</li>
-                <li class="red">7.前端单元测试</li>
+                <li class="red">6.前端单元测试</li>
+                <li class="red">7.构建production代码,增加时间戳。</li>
                 <li>8.测试</li>
                 <li>9.重复2-8,直到无bug.</li>
                 <li>10.部署</li>
             </ul>
-            <p style="padding-top:20px;text-align: left;">所见即所得开发 ----> 编译开发</p>
         </section>
 
         <section>
@@ -116,7 +115,7 @@
             </ul>
         </section>
         <section>
-            <h2>前端自动化方案</h2>
+            <h2>前端自动化方案有哪些</h2>
             <ul>
                 <li>他山之石：Ant</li>
                 <li>锤子：npm script</li>
@@ -343,7 +342,7 @@ var cssmin = require('gulp-cssmin');
 var rename = require("gulp-rename");
 
 gulp.task('css',['sprite','less'],function(){
-    var commonCss = gulp.src(['static/source/css/**/*.css','static/source/css/**/*.css'])
+    var commonCss = gulp.src(['static/source/css/lib/*.css','static/source/css/common/*.css'])
         .pipe(concat('main.css'))
         .pipe(gulp.dest('static/dist/css/common/'))
         .pipe(cssmin())
@@ -369,17 +368,17 @@ var rename = require("gulp-rename");
 
 // 构建js文件
 gulp.task('js',function(){
-    var commonJsStream = gulp.src('static/source/js/**/*.js')
-        .pipe(concat('app.js'))
-        .pipe(gulp.dest('static/dist/js/'))
+    var commonJsStream = gulp.src(['static/source/js/lib/*.js','static/source/js/common/*.js'])
+        .pipe(concat('common.js'))
+        .pipe(gulp.dest('static/dist/js/common/'))
         .pipe(uglify())
-        .pipe(rename('app.min.js'))
-        .pipe(gulp.dest('static/dist/js/'));
+        .pipe(rename('common.min.js'))
+        .pipe(gulp.dest('static/dist/js/common/'));
 
     var pageJsStream = gulp.src('static/source/js/page/*.js')
         .pipe(gulp.dest('static/dist/js/page/'))
         .pipe(uglify())
-        .pipe(rename({suffix:'-min'}))
+        .pipe(rename({suffix:'.min'}))
         .pipe(gulp.dest('static/dist/js/page/'));
 
     return merge(commonJsStream, pageJsStream);
