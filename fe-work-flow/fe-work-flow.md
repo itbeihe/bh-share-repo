@@ -6,7 +6,7 @@ files: /js/demo.js,/css/demo.css
 
 [slide]
 
-# it行业的工作流程
+# IT行业的工作流程
 ## 演讲者：唐琪
 
 [slide]
@@ -39,7 +39,6 @@ files: /js/demo.js,/css/demo.css
 [slide]
 ## 简单的工作流程
 
-
 [slide]
 ## 中小型团队的工作流程
 ![中小型团队的工作流程](/img/hy.jpg)
@@ -54,9 +53,10 @@ files: /js/demo.js,/css/demo.css
 
 [slide]
 ##产品经理
-* 需求提出
+* 分析市场,提出需求
 * 资源调度协调
-* 对产品负责
+* 对产品负责,持续跟踪
+* 原型绘制
 
 [slide]
 ##设计师
@@ -87,14 +87,14 @@ files: /js/demo.js,/css/demo.css
 * 服务器安全和维护
 
 [slide]
-## 工作流程如何高效?
+## 高效工作流程?
 
 [slide]
 ## 高效 ≠ 快速
 
 [slide]
 * 职责明确
-* 对上游理解
-* 对下游负责
+* 对上游理解,对下游负责
 * 合并安排并行和串行
-* 尽快解决争议点
+* 争议点尽快解决
+* 自动代替手动
