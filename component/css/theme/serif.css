@@ -12,10 +12,11 @@
  *********************************************/
 body {
   background: #F0F1EB;
-  background-color: #F0F1EB; }
+  background-color: #F0F1EB;
+}
 
 .reveal {
-  font-family: "Palatino Linotype", "Book Antiqua", Palatino, FreeSerif, serif;
+  font-family: "微软雅黑","Palatino Linotype", "Book Antiqua", Palatino, FreeSerif, serif;
   font-size: 36px;
   font-weight: normal;
   color: #000; }
@@ -41,7 +42,7 @@ body {
 .reveal h6 {
   margin: 0 0 20px 0;
   color: #383D3D;
-  font-family: "Palatino Linotype", "Book Antiqua", Palatino, FreeSerif, serif;
+  font-family: "微软雅黑","Palatino Linotype", "Book Antiqua", Palatino, FreeSerif, serif;
   font-weight: normal;
   line-height: 1.2;
   letter-spacing: normal;
